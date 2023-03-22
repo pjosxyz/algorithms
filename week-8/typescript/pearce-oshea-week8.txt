@@ -1,0 +1,147 @@
+Pearce O'Shea - Recursion
+
+1.
+
+  public static String reverseString(String str) {
+    if (str.length() == 1)
+      return str.charAt(0) + "";
+
+    String lastChar = str.charAt(str.length() - 1) + "";
+    String nextStr = str.substring(0, str.length() - 1);
+
+    String nextChar = reverseString(nextStr);
+    String reversedStr = lastChar + nextChar;
+
+    return reversedStr;
+  }
+
+---
+
+2. 
+
+  public static int[] revArray(int[] arr, int index) {
+    if (index > (arr.length - 1) / 2)
+      return arr;
+
+    int first = arr[index];
+    int last = arr[arr.length - 1 - index];
+
+    arr[index] = last;
+    arr[arr.length - 1 - index] = first;
+
+    index++;
+
+    return revArray(arr, index);
+
+  }
+  
+---
+
+3. 
+
+  public static boolean findElem(char[] arr, char elem, int index) {
+    if (arr[index] == elem)
+      return true;
+
+    if (index == arr.length - 1)
+      return false;
+
+    index++;
+
+    return findElem(arr, elem, index);
+  }
+  
+---
+
+4. 
+
+  public static int sumNums(int[] arr, int index, int sum) {
+    if (index == arr.length - 1)
+      return sum + arr[index];
+
+    sum += arr[index];
+
+    index++;
+
+    return sumNums(arr, index, sum);
+  }
+  
+---
+
+5. 
+
+  public static int getNthFibNumber(int nthNum, ArrayList<Integer> fibArray, int index) {
+    if (index == nthNum - 1)
+      return fibArray.get(index);
+
+    int n1 = fibArray.get(fibArray.size() - 1);
+    int n2 = fibArray.get(fibArray.size() - 2);
+
+    fibArray.add(n1 + n2);
+    index++;
+    
+    return getNthFibNumber(nthNum, fibArray, index);
+  }
+
+---
+  
+6. 
+
+  public static boolean checkIsPalindrome(String str) {
+    String reversedStr = reverseString(str);
+    return reversedStr.equals(str);
+  }
+
+  public static String reverseString(String str) {
+    // base case, coerce char to string
+    if (str.length() == 1)
+      return str.charAt(0) + "";
+
+    String lastChar = str.charAt(str.length() - 1) + "";
+    String nextStr = str.substring(0, str.length() - 1);
+
+    String nextChar = reverseString(nextStr);
+    String reversedStr = lastChar + nextChar;
+
+    return reversedStr;
+  }
+
+---
+
+7. 
+
+  public static long raiseToPower(int base, int exp) {
+    if (exp == 1)
+      return base;
+    int nextBase = base * base;
+    exp--;
+    return raiseToPower(base, nextBase, exp);
+  }
+
+  public static long raiseToPower(int base, int newBase, int exp) {
+    if (exp == 1)
+      return newBase;
+    int nextBase = base * newBase;
+    exp--;
+    return raiseToPower(base, nextBase, exp);
+  }
+
+---
+
+8. 
+
+  public static int countSubStr(String str, String check, int index, int count) {
+    int checkLength = check.length();
+
+    String slice = str.substring(index, (index + checkLength));
+
+    if (slice.equals(check))
+      count++;
+
+    if (index == (str.length()) - checkLength)
+      return count;
+
+    index++;
+
+    return countSubStr(str, check, index, count);
+  }
